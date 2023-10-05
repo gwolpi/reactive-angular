@@ -1,0 +1,26 @@
+<mat-card style="max-width: 600px;">
+    <mat-card-header>
+        <mat-card-title> Delta-N Bank</mat-card-title>
+        <mat-card-subtitle> Currency Conversion Tools</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <form>
+            <mat-radio-group name="currency" [ngModel]="form.currency" (ngModelChange)="updateCurrency($event)">
+                <mat-radio-button *ngFor="let curr of currencies" [value]="curr.code">
+                    {{ curr.name }} ({{curr.symbol}})
+                </mat-radio-button>
+            </mat-radio-group>
+            <mat-form-field>
+                <mat-label> Amount </mat-label>
+                <span matPrefix> {{ currencySymbol }} &nbsp;</span>
+                <input matInput name="amount" [ngModel]="form.amount" (ngModelChange)="updateAmount($event)" type="number" />
+            </mat-form-field>
+        </form>
+        <p> Currency rate: {{ currencyRate }} </p>
+        <p> Cost in EUR: {{ costInEur | currency: 'EUR' }} </p>
+
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button> BUY </button>
+    </mat-card-actions>
+</mat-card>
